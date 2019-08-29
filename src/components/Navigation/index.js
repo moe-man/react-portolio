@@ -17,6 +17,18 @@ const Navigation = () => (
           <li>
             <Link to={ROUTES.ABOUT}>About</Link>
           </li>
+          <li>
+            <Link to={ROUTES.RESUME}>Resume</Link>
+          </li>
+          <li>
+            <Link to={ROUTES.TICTACTOE}>Tic Tac Toe</Link>
+          </li>
+          <li>
+            <Link to={ROUTES.CALCULATOR}>Calculator</Link>
+          </li>
+          <li>
+            <Link to={ROUTES.PORTFOLIO}>Portfolio</Link>
+          </li>
         </ul>
       </div>
   </nav>
