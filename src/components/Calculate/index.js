@@ -7,25 +7,25 @@ class Calculate extends React.Component{
         this.state = {
             screen: "",
             num: null,
-            sum: null,
             isSumDisplayed: false,
             operation: ""
         }
+
     }
 
     addition(){
         if (this.state.screen !== "")
         {   
             var num = this.state.num
-            this.setState({operations: '+'})
+            this.setState({operation: '+'})
 
             if (!num)
-                this.setState({screen: "", num: Number(this.state.screen)})
+                this.setState({screen: "", num: Number(this.state.screen), isSumDisplayed: false})
             
             else 
             {
                 const sum = num + Number(this.state.screen)
-                this.setState({screen: String(sum), num: null, sum: sum, isSumDisplayed: true})
+                this.setState({screen: String(sum), num: null, isSumDisplayed: true})
 
             }
         }
@@ -35,15 +35,15 @@ class Calculate extends React.Component{
         if (this.state.screen !== "")
         {   
             var num = this.state.num
-            this.setState({operations: '-'})
+            this.setState({operation: '-'})
 
             if (!num)
-                this.setState({screen: "", num: Number(this.state.screen)})
+                this.setState({screen: "", num: Number(this.state.screen), isSumDisplayed: false})
             
             else 
             {
                 const sum = num - Number(this.state.screen)
-                this.setState({screen: String(sum), num: null, sum: sum, isSumDisplayed: true})
+                this.setState({screen: String(sum), num: null, isSumDisplayed: true})
             }
         }
     }
@@ -52,38 +52,38 @@ class Calculate extends React.Component{
         if (this.state.screen !== "")
         {   
             var num = this.state.num
-            this.setState({operations: '/'})
+            this.setState({operation: '/'})
 
             if (!num)
-                this.setState({screen: "", num: Number(this.state.screen)})
+                this.setState({screen: "", num: Number(this.state.screen), isSumDisplayed: false})
             
             else 
             {
                 const sum = num / Number(this.state.screen)
-                this.setState({screen: String(sum), num: null, sum: sum, isSumDisplayed: true})
+                this.setState({screen: String(sum), num: null, isSumDisplayed: true})
             }
         }
     }
 
     solve (){
-        if (this.state.operations === "+")
+        if (this.state.operation === "+")
             {
                 var sum = this.state.num + Number(this.state.screen)
-                this.setState({screen: String(sum), sum: 0, num: null}
+                this.setState({screen: String(sum), num: null, isSumDisplayed: true}
 
                 )
             }
-         else if (this.state.operations === "-")
+        else if (this.state.operation === "-")
             {
                 var sum = this.state.num - Number(this.state.screen)
-                this.setState({screen: String(sum), sum: 0, num: null}
+                this.setState({screen: String(sum), num: null, isSumDisplayed: true}
 
                 )
             }
-            else if (this.state.operations === "/")
+        else if (this.state.operation === "/")
             {
                 var sum = this.state.num / Number(this.state.screen)
-                this.setState({screen: String(sum), sum: 0, num: null}
+                this.setState({screen: String(sum), num: null, isSumDisplayed: true}
 
                 )
             }
@@ -93,13 +93,24 @@ class Calculate extends React.Component{
         this.setState({
             isSumDisplayed: false,
             screen: "",
-            sum: 0,
             num: null
         }, ()=> console.log(this.state))
     }
 
+    handleChange = (value) =>{
+        console.log('value', value)
+
+        if(!this.state.isSumDisplayed)
+            this.setState({screen: value})
+       
+        else {
+            this.clearScreen()
+            this.setState({screen: value})
+        }    
+       
+    }
+
     handleClick(button){
-      console.log(button)
         if (button === "+") {
             this.addition();
         }
@@ -117,18 +128,21 @@ class Calculate extends React.Component{
         }
        else{  
 
-           if(this.state.isSumDisplayed) {
-                this.clearScreen()
-           }
             let currentText = this.state.screen;
             currentText += button;
             this.setState({screen: currentText})
+
+            if(this.state.isSumDisplayed) {
+                this.clearScreen()
+                this.setState({screen: String(button)})
+           }
        }
      }
 
     render(){
         console.log('sumIsDiplayed', this.state.isSumDisplayed)
-        return(<KeyPad onClick = {(button) => {this.handleClick(button)}} numOnScreen = {this.state.screen}/>)
+        return(<KeyPad onClick = {(button) => {this.handleClick(button)}} numOnScreen = {this.state.screen}
+        onChange = {this.handleChange}/>)
     }
 }
 

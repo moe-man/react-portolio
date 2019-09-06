@@ -5,10 +5,10 @@ class KeyPad extends React.Component{
 
     renderButton(item){
 
-        var buttonType = "\"number-button\""
+        var buttonType = "number-button"
 
             if (item === '-' || item === '+' || item === "=")
-                buttonType = "\"operator-button\""
+                buttonType = "operator-button"
 
         return (<Button onClick = {() => this.props.onClick(item)} buttonType = {buttonType} buttonLabel = {item}/>)
     }
@@ -32,18 +32,11 @@ class KeyPad extends React.Component{
         return(lowerHalfOfKeypad)
     }
 
-   /* inputSource(){
-        if (this.props.numOnScreen === "")
-            return(<input/>)
-        else
-            return(<input value = {this.props.numOnScreen}/>)
-        
-    }*/
-
     render (){
         return (
             <div>
-               <div><input value = {this.props.numOnScreen}/></div>
+               <div><input value = {this.props.numOnScreen} type="text" className="screen" onChange =
+               {(e) => this.props.onChange(e.target.value)}/></div>
                 <button className="clear-button" onClick = {() => this.props.onClick("clear")}>clear</button>
                 <button className="divide-button" onClick = {() => this.props.onClick('/')}>/</button>
                 {this.createButtons()}

@@ -4,3 +4,35 @@
     grid-template-areas;
     "screen scw"
 }*/
+
+.number-button{
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    font-size: 70px;
+}
+
+.operator-button{
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    font-size: 70px;
+}
+
+.clear-button{
+    width: 300px;
+    height: 100px;
+    font-size: 70px;
+}
+
+.screen{
+    width: 396px;
+    height: 100px;
+    font-size: 70px;
+}
+
+.divide-button{
+    width: 100px;
+    height: 100px;
+    font-size: 70px;
+}

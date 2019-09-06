@@ -10,6 +10,7 @@ import Resume from './containers/Resume';
 import TicTacToe from './containers/TicTacToe';
 import Calculator from './containers/Calculator';
 import Portfolio from './containers/Portfolio';
+import Choosetwo from './containers/Choosetwo';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route exact path={ROUTES.TICTACTOE} component={TicTacToe}/>
             <Route exact path={ROUTES.CALCULATOR} component={Calculator}/>
             <Route exact path={ROUTES.PORTFOLIO} component={Portfolio}/>
+            <Route exact path={ROUTES.CHOOSETWO} component={Choosetwo}/>
             </Switch>
           <Footer />
         </Router>
